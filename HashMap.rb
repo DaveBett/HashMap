@@ -1,7 +1,11 @@
 class HashMap
+  
+  attr_reader :capacity
+
   def initialize(
     @load_factor = 0,75
     @capacity = 16
+    @buckets = Array.new(@capacity) { [] }
   )
 
   def hash(key)
@@ -13,7 +17,7 @@ class HashMap
     hash_code
   end
   
-    def set(key, value)
+  def set(key, value)
     hash_code = hash(key)
     bucket_index = hash_code % @capacity
     bucket = @buckets[bucket_index]
@@ -31,7 +35,28 @@ class HashMap
     end
     
     if length > (@capacity * @load_factor)
-        resize
+      resize
     end
   end
+
+  def get(key)
+    hash_code = hash(key)
+
+  end
+
+ private
+ 
+  def resize
+    old_buckets = @buckets
+    @capacity *= 2
+    @buckets = Array.new(@capacity) { [] }
+
+    old_buckets.each do |bucket|
+      bucket.each do |key, value|
+        set(key, value)
+      end
+    end
+  end
+
+
 end
