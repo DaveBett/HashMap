@@ -41,11 +41,17 @@ class HashMap
 
   def get(key)
     hash_code = hash(key)
+    bucket_index = hash_code % capacity
+    bucket = @buckets[bucket_index]
 
+    bucket.each do |k, v|
+      return v if k == key
+    end
+    return nil
   end
 
  private
- 
+
   def resize
     old_buckets = @buckets
     @capacity *= 2
