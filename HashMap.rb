@@ -91,6 +91,17 @@ class HashMap
     @buckets = Array.new(@capacity)
   end
 
+  def keys
+    k = Array.new()
+
+    @buckets.each do |bucket|
+      bucket.each do |pair|
+        k << pair[1]
+      end
+    end
+    return k
+  end
+
 
 
   private

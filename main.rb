@@ -1,3 +1,3 @@
-map = new.HashMap
+map = HashMap.new
 
 map.set()
