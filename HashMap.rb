@@ -50,6 +50,21 @@ class HashMap
     return nil
   end
 
+  def has?(key)
+    hash_code = hash(key)
+    bucket_index = hash_code % capacity
+    bucket = @buckets[bucket_index]
+
+    bucket.each do |k|
+      return true if k == key
+    end
+    return false
+  end
+
+
+
+  end
+
  private
 
   def resize
