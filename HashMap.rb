@@ -7,6 +7,7 @@ class HashMap
     @capacity = 16
     @buckets = Array.new(@capacity) { [] }
   )
+  end
 
   def hash(key)
     hash_code = 0
@@ -61,11 +62,23 @@ class HashMap
     return false
   end
 
+  def remove(key)
+    hash_code = hash(key)
+    bucket_index = hash_code % capacity
+    bucket = @buckets[bucket_index]
 
-
+      bucket.each_with_index do |k, index|
+      if k[0] == key
+        removed_value = k[1]
+        bucket.delete_at(index)
+        return removed_value
+      end
+    end
+    nil
   end
 
- private
+
+  private
 
   def resize
     old_buckets = @buckets
