@@ -5,7 +5,7 @@ class HashMap
   def initialize(
     @load_factor = 0,75
     @capacity = 16
-    @buckets = Array.new(@capacity) { [] }
+    @buckets = Array.new(@capacity)
   )
   end
 
@@ -76,6 +76,21 @@ class HashMap
     end
     nil
   end
+
+  def length
+    i = 0
+    @buckets.each do |bucket|
+      pairs = bucket.length
+        i += pairs
+    end
+    return i
+  end
+
+  def clear
+    @capacity = 16
+    @buckets = Array.new(@capacity)
+  end
+
 
 
   private
