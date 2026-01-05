@@ -2,11 +2,10 @@ class HashMap
   
   attr_reader :capacity
 
-  def initialize(
+  def initialize
     @load_factor = 0,75
     @capacity = 16
     @buckets = Array.new(@capacity)
-  )
   end
 
   def hash(key)
@@ -104,7 +103,7 @@ class HashMap
 
   def entries
     pairs = []
-    
+
     @buckets.each do |bucket|
       bucket.each do |pair|
         pairs << pair
@@ -112,8 +111,6 @@ class HashMap
     end
     return pairs
   end
-
-
 
   private
 
