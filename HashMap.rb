@@ -102,6 +102,17 @@ class HashMap
     return k
   end
 
+  def entries
+    pairs = []
+    
+    @buckets.each do |bucket|
+      bucket.each do |pair|
+        pairs << pair
+      end
+    end
+    return pairs
+  end
+
 
 
   private
